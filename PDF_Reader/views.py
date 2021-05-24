@@ -1,12 +1,16 @@
 #   Vsita del La pagina principal
 
-#Django
+# Django
+from os import error
 from django.shortcuts import render
+
+# Programas
 import fitz
 import pyttsx3
 
 
 Ruta="C:\ "
+type_archivo=1
 
 def Nombre_Archivo(Directorio):
     ##estraes el nombre del archivo junto a su extension
@@ -14,17 +18,16 @@ def Nombre_Archivo(Directorio):
     nombre_archivo=D_Archivo[(len(D_Archivo)-1)]
     return nombre_archivo
 
-def tipo_Audio(type=1):
+def tipo_Audio(type):
     #tipo de archivo de audio
     nombre=Nombre_Archivo(Ruta)
     if type == 1:
-        print('lunes')
+        nombre=nombre+".mp3"
     elif type == 2:
-        print('martes')
+        nombre=nombre+".wav"
     elif type == 3:
-        print('miércoles')
-    else:
-        print('jueves')
+        nombre=nombre+".m4a"
+    return nombre
 
 
 
@@ -49,11 +52,14 @@ def Transformar_PDF_txt():
     txtcompleto.close()
     return txtcompleto
 
-def Transformar_txt_audio(txt):
+def Transformar_txt_audio(txt,):
     engine = pyttsx3.init()
     engine.setProperty("rate", 155)
     engine.setProperty('voice',"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\LTTS7Jorge")
-    engine.save_to_file(txt,audio)
+    engine.save_to_file(txt,tipo_Audio(type_archivo))
     engine.runAndWait()
 
 
+def main(request):
+    #ENlce con html
+    return render(request,'index.html')
