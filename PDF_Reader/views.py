@@ -14,28 +14,22 @@ def Nombre_Archivo(Directorio):
     nombre_archivo=D_Archivo[(len(D_Archivo)-1)]
     return nombre_archivo
 
-def tipo_Audio(Directorio, type=1):
-    nombre=Nombre_Archivo(Directorio)
-    if dia == 1:
+def tipo_Audio(type=1):
+    #tipo de archivo de audio
+    nombre=Nombre_Archivo(Ruta)
+    if type == 1:
         print('lunes')
-    elif dia == 2:
+    elif type == 2:
         print('martes')
-    elif dia == 3:
+    elif type == 3:
         print('miércoles')
-    elif dia == 4:
-        print('jueves')
-    elif dia == 5:
-        print('viernes')
-    elif dia == 6:
-        print('sábado')
-    elif dia == 7:
-        print('domingo')
     else:
-	    print('error')
+        print('jueves')
 
 
 
 def Transformar_PDF_txt():
+    #Tranformar pdf varible con texto
     documento = fitz.open(Ruta)
     nombre_archivo=Nombre_Archivo(Ruta)
     txtcompleto=open(nombre_archivo+".txt","wb")
@@ -55,7 +49,7 @@ def Transformar_PDF_txt():
     txtcompleto.close()
     return txtcompleto
 
-def Transformar_txt_audio(ruta,txt):
+def Transformar_txt_audio(txt):
     engine = pyttsx3.init()
     engine.setProperty("rate", 155)
     engine.setProperty('voice',"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\LTTS7Jorge")
