@@ -25,13 +25,13 @@
                         </span>
                     </div>
                     <div class="card-body">
-                      <form action="" method="GET" enctype="multipart/form-data" >
+                      <form action="" method="POST" enctype="multipart/form-data" >
                         {% csrf_token %} 
-                        <input id='fileid'  type='file'  hidden/>
+                        <input id='fileid'  type='file'  name="Ruta" hidden/>
                         <button id='boton'  class="boton-principal centrar" >
                             <span>Subir Archivo</span>
                         </button>
-                        <button type="submit" name="Ruta" class="boton-enviar centrar">Transformar</button>
+                        <button type="submit"  class="boton-enviar centrar">Transformar</button>
                        </form>
                     </div>
                 </div>
