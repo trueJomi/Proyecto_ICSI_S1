@@ -1,28 +1,22 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Reader</title>
-  
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/css/all.css">
-    <link rel="stylesheet" href="/static/css/style.css">
+
+    {% block head_content %}
+    {% endblock  %}
+    
+    
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <header><nav class="navbar">
-        <div class="container-fluid">
-        <div class="navbar-brand">
-            <i class="far fa-file-pdf img-fluid Logo"></i>
-            <spam class="Logo">&nbsp;PDF Reader</spam>
-        </div>
-        </div>
-      </nav>
-      
-     </header>
+    {% include "navbar.html" %}
     <main>
-        <div>
             <div class="container">
                 <div class="card centro">
                     <div class="card-header text-center">
@@ -31,24 +25,22 @@
                         </span>
                     </div>
                     <div class="card-body">
-                        <div class="centrar">
-                            <input id='fileid' type='file' hidden/>
-                            <button id='boton'  class="boton-principal">
-                              <span>Subir Archivo</span>
-                            </button>
-                            <button class="boton-enviar">enviar</button>
-                        </div>
+                      <form action="" method="GET" enctype="multipart/form-data" >
+                        {% csrf_token %} 
+                        <input id='fileid'  type='file'  hidden/>
+                        <button id='boton'  class="boton-principal centrar" >
+                            <span>Subir Archivo</span>
+                        </button>
+                        <button type="submit" name="Ruta" class="boton-enviar centrar">Transformar</button>
+                       </form>
                     </div>
                 </div>
             </div>
-        </div>
     </main>
-    <footer>
-
-    </footer>
-    <script src="/static/js/jquery-3.5.1.min.js"></script>
-    <script src="/static/js/popper.min.js"></script>
-	<script src="/static/js/bootstrap.min.js"></script>
-    <script src="/static/js/script.js"></script>
+    {% include "footer.html" %}
+    <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+	  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

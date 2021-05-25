@@ -7,16 +7,38 @@ body {
 }
 .boton-principal {
     background-color: rgb(146, 0, 146);
+    height: auto;
+    text-align: center;
     color: white;
+    border: none;
     display: flex;
-    font-size: 4rem;
+    font-family:sans-serif;
+    font-size: 3rem;
+    margin: 0 auto;
     padding: 2rem 4rem 2rem 4rem;
     text-transform: uppercase;
     letter-spacing: 0.25rem;
-    border-radius: 1rem;
+    border-radius: 3rem;
     cursor: pointer;
+    font-weight:bolder;
 }
 
+.boton-enviar {
+    font-family:sans-serif;
+    border: none;
+    font-weight:bolder;
+    font-size: 2rem;
+    text-align: center;
+    color: white;
+    padding: 1rem 2rem 1rem 2rem;
+    border-radius:2rem;
+    margin-block-start: 10rem;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 3rem;
+    background-color: rgb(146, 0, 146);
+    text-transform: uppercase;
+}
 
 .centrar{
     display: flex;
@@ -75,15 +97,10 @@ body {
         border-color: #38EDE8;
     }
 } */
-.container {
-    height: 200px;
-    position: relative;
-  
-}
   
 .centro {
     display: flex;
-    margin-top: 16rem;
+    margin-top: 10rem;
 }
 
 .letra-grande{

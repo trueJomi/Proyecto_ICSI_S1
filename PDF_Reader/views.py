@@ -62,4 +62,10 @@ def Transformar_txt_audio(txt,):
 
 def main(request):
     #ENlce con html
+
+    # if request.method =="GET":
+    #      print("*"*10)
+    #      Directorio = request.GET['Ruta']
+    #      print(Directorio)
+    #      print("*"*10)
     return render(request,'index.html')
