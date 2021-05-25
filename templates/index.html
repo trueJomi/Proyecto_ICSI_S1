@@ -7,13 +7,16 @@
     <title>PDF Reader</title>
   
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/css/all.css">
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <header><nav class="navbar navbar-light bg-light">
+    <header><nav class="navbar">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">PDF READER</a>
+        <div class="navbar-brand">
+            <i class="far fa-file-pdf img-fluid Logo"></i>
+            <spam class="Logo">&nbsp;PDF Reader</spam>
+        </div>
         </div>
       </nav>
       
@@ -21,18 +24,31 @@
     <main>
         <div>
             <div class="container">
-                <div class="center">
-                    <input id='fileid' type='file' hidden/>
-                    <button id='boton'  class="boton-neon">
-                      <i class="icon-home"></i>  
-                      <span>Subir Archivo</span>
-                    </button>
-                     <button class="boton-neon">enviar</button>
+                <div class="card centro">
+                    <div class="card-header text-center">
+                        <span class="letra-grande">
+                            Tranforme su PDF en Audio
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <div class="centrar">
+                            <input id='fileid' type='file' hidden/>
+                            <button id='boton'  class="boton-principal">
+                              <span>Subir Archivo</span>
+                            </button>
+                            <button class="boton-enviar">enviar</button>
+                        </div>
+                    </div>
                 </div>
-              </div>
-           
+            </div>
         </div>
     </main>
+    <footer>
+
+    </footer>
+    <script src="/static/js/jquery-3.5.1.min.js"></script>
+    <script src="/static/js/popper.min.js"></script>
+	<script src="/static/js/bootstrap.min.js"></script>
     <script src="/static/js/script.js"></script>
 </body>
 </html>

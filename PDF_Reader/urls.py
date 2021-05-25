@@ -24,5 +24,5 @@ from PDF_Reader import views
 
 
 urlpatterns = [
-    path('PDF_Reader/', views.main)
+    path('', views.main)
 ]
