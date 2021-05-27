@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+{% block head_content %}
+<title>PDF_Reader</title>
+{% endblock  %}
+
+
+{% block container %}
+
+                <div class="card centro">
+                    <div class="card-header text-center">
+                        <span class="letra-grande">
+                            Tranforme su PDF en Audio
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <button id='boton' class="boton-principal centrar" >
+                            <span>Subir Archivo</span>
+                        </button>
+                      <form method="POST" enctype = "multipart/form-data" action="{% url 'archivo' %}">
+                        {% csrf_token %} 
+                        <input id='fileid' type='file'  name="archivo" hidden/>
+                        
+                        <button type="submit"  class="boton-enviar centrar">Transformar</button>
+                       </form>
+
+                    </div>
+                </div>
+{% endblock %}

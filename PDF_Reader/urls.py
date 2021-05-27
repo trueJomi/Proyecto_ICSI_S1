@@ -15,14 +15,19 @@ Including another URLconf
 """
 
 ##django
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
 ## Mio
-from PDF_Reader import views
-
-
+from PDF_Reader import views as local_views
+from PDF_tranformador import views as PDF_tranformador_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', views.main)
+    path('', PDF_tranformador_views.main, name='archivo')
 ]
+
+
+urlpatterns += static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

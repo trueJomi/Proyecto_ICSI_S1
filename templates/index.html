@@ -18,23 +18,8 @@
     {% include "navbar.html" %}
     <main>
             <div class="container">
-                <div class="card centro">
-                    <div class="card-header text-center">
-                        <span class="letra-grande">
-                            Tranforme su PDF en Audio
-                        </span>
-                    </div>
-                    <div class="card-body">
-                      <form action="" method="POST" enctype="multipart/form-data" >
-                        {% csrf_token %} 
-                        <input id='fileid'  type='file'  name="Ruta" hidden/>
-                        <button id='boton'  class="boton-principal centrar" >
-                            <span>Subir Archivo</span>
-                        </button>
-                        <button type="submit"  class="boton-enviar centrar">Transformar</button>
-                       </form>
-                    </div>
-                </div>
+                {% block container %}
+                {% endblock%}
             </div>
     </main>
     {% include "footer.html" %}
