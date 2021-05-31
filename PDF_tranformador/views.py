@@ -1,30 +1,30 @@
 ## Views PDF tranformador
 
 ## django import
-from PDF_tranformador.models import Archivo
+from os import fsencode, remove
+import os
+from django.forms.widgets import Media
+from django.utils import html
+from PDF_Reader.settings import BASE_DIR
 from django.shortcuts import redirect, render
 
 # Create your views here.
-
 from PDF_tranformador.forms import fileForm
-
+from django.core.files.storage import FileSystemStorage
 ## import me
+import pathlib
 import fitz
 import pyttsx3
 
 
-Ruta="C:\ "
-type_archivo=1
+RUTA= pathlib.Path(BASE_DIR/'media')
+TYPE_AR=1
+direc=''
+Nombre_Archivo=''
 
-def Nombre_Archivo(Directorio):
-    ##estraes el nombre del archivo junto a su extension
-    D_Archivo= Directorio.split("/")        
-    nombre_archivo=D_Archivo[(len(D_Archivo)-1)]
-    return nombre_archivo
 
-def tipo_Audio(type):
+def tipo_Audio(type,nombre):
     #tipo de archivo de audio
-    nombre=Nombre_Archivo(Ruta)
     if type == 1:
         nombre=nombre+".mp3"
     elif type == 2:
@@ -35,11 +35,10 @@ def tipo_Audio(type):
 
 
 
-def Transformar_PDF_txt():
+def Transformar_PDF_txt(dry,nombre):
     #Tranformar pdf varible con texto
-    documento = fitz.open(Ruta)
-    nombre_archivo=Nombre_Archivo(Ruta)
-    txtcompleto=open(nombre_archivo+".txt","wb")
+    documento = fitz.open(dry)
+    txtcompleto=open(RUTA/nombre+".txt","wb")
     text_Completo=""
 
     Pagina = documento.loadPage(0)
@@ -56,17 +55,13 @@ def Transformar_PDF_txt():
     txtcompleto.close()
     return txtcompleto
 
-def Transformar_txt_audio(txt,):
+def Transformar_txt_audio(txt):
+    #tranformar el archivo de audio
     engine = pyttsx3.init()
     engine.setProperty("rate", 155)
     engine.setProperty('voice',"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\LTTS7Jorge")
-    engine.save_to_file(txt,tipo_Audio(type_archivo))
+    engine.save_to_file(txt,tipo_Audio(TYPE_AR))
     engine.runAndWait()
-
-def handle_uploaded_file(f):
-    with open('some/file.txt', 'wb+') as destination:
-        for chunk in f.chunks():
-            destination.write(chunk)
 
 
 def main(request):
@@ -75,11 +70,26 @@ def main(request):
         form = fileForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            
+            gr=list(RUTA.glob('*.pdf'))
+            direc=str(gr[0])
+            archivo=open(direc)
+            Nombre_Archivo=os.path.basename(direc)
+
+
+
+
+            archivo.close()
+            os.remove(direc)
     else:
         form = fileForm()
     return render(
         request=request,
         template_name='pages/inicio.html',
         context={'form':form}
-        )
+    )
+
+def download(requets):
+    return render(
+        request=requets,
+        template_name='pages/descargar.html'
+    )
