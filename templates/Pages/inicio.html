@@ -19,10 +19,14 @@
                       <form method="POST" enctype = "multipart/form-data" action="{% url 'archivo' %}">
                         {% csrf_token %} 
                         <input id='fileid' type='file'  name="archivo" hidden/>
-                        
+                        <p>{{nombre}}</p>
                         <button type="submit"  class="boton-enviar centrar">Transformar</button>
                        </form>
 
                     </div>
+                </div>
+                {% load static %}
+                <div class="loader" id='loader'>
+                    <img src="{% static './img/loading-37.gif' %}" alt="">
                 </div>
 {% endblock %}

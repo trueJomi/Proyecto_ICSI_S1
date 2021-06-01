@@ -15,6 +15,7 @@ Including another URLconf
 """
 
 ##django
+from os import name
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
@@ -26,7 +27,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', PDF_tranformador_views.main, name='archivo')
+    path('', PDF_tranformador_views.main, name='archivo'),
+    path('descargar/', PDF_tranformador_views.download, name='descarga')
 ]
 
 

@@ -18,29 +18,28 @@ import pyttsx3
 
 
 RUTA= pathlib.Path(BASE_DIR/'media')
-TYPE_AR=1
-direc=''
-Nombre_Archivo=''
+tipo=1
+Nombre_Archivo='Seleccione Archivo'
 
 
-def tipo_Audio(type,nombre):
+def tipo_Audio(type):
     #tipo de archivo de audio
     if type == 1:
-        nombre=nombre+".mp3"
+        extension=".mp3"
     elif type == 2:
-        nombre=nombre+".wav"
+        extension=".wav"
     elif type == 3:
-        nombre=nombre+".m4a"
-    return nombre
+        extension=".m4a"
+    return extension
 
 
 
-def Transformar_PDF_txt(dry,nombre):
+def Transformar_PDF_txt(dry):
     #Tranformar pdf varible con texto
     documento = fitz.open(dry)
-    txtcompleto=open(RUTA/nombre+".txt","wb")
+    archivoN=dry+".txt"
+    txtcompleto=open(archivoN,"wb")
     text_Completo=""
-
     Pagina = documento.loadPage(0)
     for Pagina in documento:
         text=Pagina.getText("text")
@@ -50,17 +49,18 @@ def Transformar_PDF_txt(dry,nombre):
             textoCorregido=textoCorregido+n+" "
         text_Completo=text_Completo+textoCorregido+"--"
         textBin=textoCorregido.encode("utf8")
-    txtcompleto.write(textBin)
-    txtcompleto.write(b"--")
+        txtcompleto.write(textBin)
+        txtcompleto.write(b"--")
     txtcompleto.close()
-    return txtcompleto
+    return text_Completo
 
-def Transformar_txt_audio(txt):
+def Transformar_txt_audio(txt,dry):
     #tranformar el archivo de audio
+    ubicacion= dry+tipo_Audio(tipo)
     engine = pyttsx3.init()
     engine.setProperty("rate", 155)
     engine.setProperty('voice',"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\LTTS7Jorge")
-    engine.save_to_file(txt,tipo_Audio(TYPE_AR))
+    engine.save_to_file(txt,ubicacion)
     engine.runAndWait()
 
 
@@ -74,18 +74,19 @@ def main(request):
             direc=str(gr[0])
             archivo=open(direc)
             Nombre_Archivo=os.path.basename(direc)
-
-
-
-
+            texto=Transformar_PDF_txt(direc)
+            Transformar_txt_audio(texto, direc)
             archivo.close()
             os.remove(direc)
+            # return redirect('descarga')
     else:
         form = fileForm()
     return render(
         request=request,
         template_name='pages/inicio.html',
-        context={'form':form}
+        context={
+            'form': form,
+        }
     )
 
 def download(requets):
