@@ -35,9 +35,11 @@ body {
     margin-block-start: 10rem;
     display: flex;
     margin: 0 auto;
-    margin-top: 3rem;
+    margin-top: 1rem;
     background-color: rgb(146, 0, 146);
     text-transform: uppercase;
+    position: absolute;
+    visibility: hidden;
 }
 
 .centrar{
@@ -143,4 +145,33 @@ footer{
     margin: auto;
     width: 50%;
     height: 50%;
+}
+.descargar{
+    font-family:sans-serif;
+    border: none;
+    font-weight:bolder;
+    font-size: 2rem;
+    text-align: center;
+    color: white;
+    padding: 1rem 2rem 1rem 2rem;
+    border-radius:2rem;
+    margin-block-start: 10rem;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 3rem;
+    background-color: rgb(146, 0, 146);
+    text-transform: uppercase;
+    justify-content: center;
+    max-width: 17rem;
+}
+.press:hover{
+    transition: 0.2s;
+    background-color: rgb(90, 1, 90);
+    text-decoration: none;
+    color: rgb(199, 199, 199);
+}
+form .m_archivo{
+    font-size: 2rem;
+    margin-top: 1rem;
+    text-align: center;
 }

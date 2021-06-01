@@ -79,11 +79,11 @@ def main(request):
         else:
             form = fileForm()
             audio=""
-            Nombre_Archivo='Seleccione Archivo'
+            Nombre_Archivo='"Seleccione Archivo"'
     else:
         form = fileForm()
         audio=""
-        Nombre_Archivo='Seleccione Archivo'
+        Nombre_Archivo='"Seleccione Archivo"'
     return render(
         request=request,
         template_name='pages/inicio.html',
