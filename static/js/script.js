@@ -8,3 +8,4 @@ function openDialog() {
 function loading(){
   document.getElementById("loader").style.display="block";
 }
+

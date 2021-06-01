@@ -21,14 +21,13 @@ from django.contrib import admin
 from django.urls import path
 
 ## Mio
-from PDF_Reader import views as local_views
 from PDF_tranformador import views as PDF_tranformador_views
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('', PDF_tranformador_views.main, name='archivo'),
-    path('descargar/', PDF_tranformador_views.download, name='descarga')
+    path('\descargar', PDF_tranformador_views.download, name='descarga')
 ]
 
 

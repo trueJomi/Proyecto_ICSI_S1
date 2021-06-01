@@ -1,16 +1,12 @@
 ## Views PDF tranformador
 
 ## django import
-from os import fsencode, remove
 import os
-from django.forms.widgets import Media
-from django.utils import html
 from PDF_Reader.settings import BASE_DIR
 from django.shortcuts import redirect, render
 
 # Create your views here.
 from PDF_tranformador.forms import fileForm
-from django.core.files.storage import FileSystemStorage
 ## import me
 import pathlib
 import fitz
@@ -47,7 +43,7 @@ def Transformar_PDF_txt(dry):
         textoCorregido=""
         for n in tokensText:
             textoCorregido=textoCorregido+n+" "
-        text_Completo=text_Completo+textoCorregido+"--"
+        text_Completo=text_Completo+textoCorregido+" "
         textBin=textoCorregido.encode("utf8")
         txtcompleto.write(textBin)
         txtcompleto.write(b"--")
@@ -72,13 +68,11 @@ def main(request):
             form.save()
             gr=list(RUTA.glob('*.pdf'))
             direc=str(gr[0])
-            archivo=open(direc)
             Nombre_Archivo=os.path.basename(direc)
             texto=Transformar_PDF_txt(direc)
             Transformar_txt_audio(texto, direc)
-            archivo.close()
             os.remove(direc)
-            # return redirect('descarga')
+        return redirect('descarga')
     else:
         form = fileForm()
     return render(
@@ -93,4 +87,4 @@ def download(requets):
     return render(
         request=requets,
         template_name='pages/descargar.html'
-    )
+)

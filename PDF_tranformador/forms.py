@@ -9,7 +9,6 @@ from PDF_tranformador.models import Archivo
 
 class fileForm(forms.ModelForm):
     # Pfile Model form
-
     class Meta:
 
         model= Archivo
