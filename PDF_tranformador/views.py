@@ -13,9 +13,11 @@ import fitz
 import pyttsx3
 
 
+
+
 RUTA= pathlib.Path(BASE_DIR/'media')
 tipo=1
-Nombre_Archivo='Seleccione Archivo'
+RUTA_D="../media/"
 
 
 def tipo_Audio(type):
@@ -60,6 +62,7 @@ def Transformar_txt_audio(txt,dry):
     engine.runAndWait()
 
 
+
 def main(request):
     #ENlce con html
     if request.method == 'POST':
@@ -71,15 +74,23 @@ def main(request):
             Nombre_Archivo=os.path.basename(direc)
             texto=Transformar_PDF_txt(direc)
             Transformar_txt_audio(texto, direc)
+            audio=RUTA_D+Nombre_Archivo+tipo_Audio(tipo)
             os.remove(direc)
-        return redirect('descarga')
+        else:
+            form = fileForm()
+            audio=""
+            Nombre_Archivo='Seleccione Archivo'
     else:
         form = fileForm()
+        audio=""
+        Nombre_Archivo='Seleccione Archivo'
     return render(
         request=request,
         template_name='pages/inicio.html',
         context={
             'form': form,
+            'archivo': audio,
+            'nombre': Nombre_Archivo,  
         }
     )
 
