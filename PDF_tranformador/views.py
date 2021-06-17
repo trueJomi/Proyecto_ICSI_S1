@@ -4,7 +4,6 @@
 import os
 from PDF_Reader.settings import BASE_DIR
 from django.shortcuts import redirect, render
-
 # Create your views here.
 from PDF_tranformador.forms import fileForm
 ## import me

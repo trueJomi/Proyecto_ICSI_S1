@@ -18,7 +18,7 @@
                         </button>
                       <form method="POST" enctype = "multipart/form-data" action="{% url 'archivo' %}">
                         {% csrf_token %} 
-                        <input id='fileid' type='file'  name="archivo" hidden/>
+                        <input id='fileid' type='file' accept="application/pdf, " name="archivo" hidden/>
                         <p class="m_archivo" >{{nombre}}</p>
                         <button type="submit"  class="boton-enviar centrar press" id='cargar'>Transformar</button>
                        </form>
