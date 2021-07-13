@@ -5,6 +5,16 @@ html{
 body {
     background-color: white;
 }
+
+input[type="file"]#fileid{
+    width: 0rem;
+    height: 0rem;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
 .boton-principal {
     background-color: rgb(146, 0, 146);
     height: auto;
@@ -124,4 +134,9 @@ form .m_archivo{
     font-size: 2rem;
     margin-top: 1rem;
     text-align: center;
+}
+.nube{
+    font-weight:bold;
+    font-size: 3rem;
+    color: white ;
 }

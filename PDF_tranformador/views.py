@@ -13,11 +13,16 @@ import pyttsx3
 
 
 
-
 RUTA= pathlib.Path(BASE_DIR/'media')
 tipo=1
 RUTA_D="../media/"
 
+
+def obtener_nombre(root):
+    nombre=os.path.basename(root)
+    NTemp=nombre.split(".")
+    nombre=NTemp[0]
+    return nombre
 
 def tipo_Audio(type):
     #tipo de archivo de audio
@@ -34,7 +39,7 @@ def tipo_Audio(type):
 def Transformar_PDF_txt(dry):
     #Tranformar pdf varible con texto
     documento = fitz.open(dry)
-    archivoN=dry+".txt"
+    archivoN=obtener_nombre(dry)+".txt"
     txtcompleto=open(archivoN,"wb")
     text_Completo=""
     Pagina = documento.loadPage(0)
@@ -53,7 +58,7 @@ def Transformar_PDF_txt(dry):
 
 def Transformar_txt_audio(txt,dry):
     #tranformar el archivo de audio
-    ubicacion= dry+tipo_Audio(tipo)
+    ubicacion= obtener_nombre(dry)+tipo_Audio(tipo)
     engine = pyttsx3.init()
     engine.setProperty("rate", 155)
     engine.setProperty('voice',"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\LTTS7Jorge")
@@ -70,31 +75,32 @@ def main(request):
             form.save()
             gr=list(RUTA.glob('*.pdf'))
             direc=str(gr[0])
-            Nombre_Archivo=os.path.basename(direc)
             texto=Transformar_PDF_txt(direc)
             Transformar_txt_audio(texto, direc)
-            audio=RUTA_D+Nombre_Archivo+tipo_Audio(tipo)
-            os.remove(direc)
+            # os.remove(direc)
+            return redirect('descarga')
         else:
             form = fileForm()
-            audio=""
-            Nombre_Archivo='"Seleccione Archivo"'
     else:
         form = fileForm()
-        audio=""
-        Nombre_Archivo='"Seleccione Archivo"'
     return render(
         request=request,
         template_name='pages/inicio.html',
         context={
             'form': form,
-            'archivo': audio,
-            'nombre': Nombre_Archivo,  
         }
     )
 
 def download(requets):
+    gr=list(RUTA.glob('*'+tipo_Audio(tipo)))
+    print(gr)
+    direc=str(gr[0])
+    audio=RUTA_D+obtener_nombre(direc)+tipo_Audio(tipo)
+    print(audio)
     return render(
         request=requets,
-        template_name='pages/descargar.html'
+        template_name='pages/download.html',
+        context={
+            'archivo':audio,
+        }
 )

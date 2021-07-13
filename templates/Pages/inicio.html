@@ -1,9 +1,9 @@
 {% extends 'index.html' %}
+
 {% load static %}
 {% block head_content %}
 <title>PDF_Reader</title>
 {% endblock  %}
-
 
 {% block container %}
                 <div class="card centro">
@@ -13,21 +13,17 @@
                         </span>
                     </div>
                     <div class="card-body">
-                        <button id='boton' class="boton-principal centrar press" >
-                            <span>Subir Archivo</span>
+                        <button id='boton' class="btn boton-principal centrar press" >
+                            <span>  Subir Archivo</span>
                         </button>
                       <form method="POST" enctype = "multipart/form-data" action="{% url 'archivo' %}">
                         {% csrf_token %} 
-                        <input id='fileid' type='file' accept="application/pdf, " name="archivo" hidden/>
-                        <p class="m_archivo" >{{nombre}}</p>
+                        <input id='fileid' type='file' accept="application/pdf, " name="archivo" class="file-input" />
                         <button type="submit"  class="boton-enviar centrar press" id='cargar'>Transformar</button>
                        </form>
-                        <a class="descargar press" href="{{archivo}}"download>
-                        Descarga
-                        </a>
                     </div>
                 </div>
-                
+                {% comment %} <i class="far fa-cloud-download-alt img-fluid"></i> {% endcomment %}
                 <div class="loader" id='loader'>
                     <img src="{% static './img/loading-37.gif' %}" alt="">
                 </div>

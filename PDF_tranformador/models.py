@@ -7,5 +7,5 @@ class Archivo(models.Model):
 
     archivo = models.FileField(
         blank=False,
-        null=False
+        null=False,
     )

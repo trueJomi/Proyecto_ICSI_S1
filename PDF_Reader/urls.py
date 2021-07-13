@@ -27,6 +27,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', PDF_tranformador_views.main, name='archivo'),
+    path('download', PDF_tranformador_views.download, name='descarga'),
 ]
 
 
