@@ -16,15 +16,35 @@
                         <button id='boton' class="boton-principal centrar press" >
                             <span>Subir Archivo</span>
                         </button>
-                      <form method="POST" enctype = "multipart/form-data" action="{% url 'archivo' %}">
-                        {% csrf_token %} 
-                        <input id='fileid' type='file' accept="application/pdf, " name="archivo" hidden/>
-                        <p class="m_archivo" >{{nombre}}</p>
-                        <button type="submit"  class="boton-enviar centrar press" id='cargar'>Transformar</button>
-                       </form>
-                        <a class="descargar press" href="{{archivo}}"download>
-                        Descarga
-                        </a>
+                        <form method="POST" enctype = "multipart/form-data" action="{% url 'archivo' %}">
+                            {% csrf_token %} 
+                            <input id='fileid' type='file' accept="application/pdf, " name="archivo" hidden/>
+                            
+                            <div class="container">
+                                <div class="col-4 mt-5">
+                                    <label for="exampleFormControlSelect1">Tipo de archivo</label>
+                                    <select class="form-select" aria-label="Default select example" name="tipo_dato">
+                                    <option selected value="1">mp3</option>
+                                    <option value="3">m4p</option>
+                                    <option value="2">wav</option>
+                                </select>
+                                <label for="exampleFormControlSelect1">Voces</label>
+                                <select class="form-select" aria-label="Default select example" name="voz">
+                                    <option selected value="0">Sabina</option>
+                                    <option value="1">Helena</option>
+                                    <option value="2">Zira</option>
+                                </select>
+                                {% comment %} <label for="exampleFormControlSelect1">Traducir a ingles</label>
+                                {% comment %} <br>
+                                <input type="checkbox" name="switch-button" id="switch-label" class="switch-button__checkbox"> {% endcomment %} 
+                                </div>
+                                
+                                <label for="customRange2" class="form-label">Velocidad</label>
+                                <input type="range" class="form-range" min="75" max="250" step="5" id="customRange2" name="velocidad">
+                            </div>
+                            <button type="submit"  class="btn boton-enviar centrar press" id='cargar'>Transformar</button>
+                        </form>
+                        <a class="btn descargar press" href="{{archivo}}"download>Descarga</a>
                     </div>
                 </div>
                 

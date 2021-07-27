@@ -9,3 +9,7 @@ class Archivo(models.Model):
         blank=False,
         null=False
     )
+class Datos(models.Model):
+    tipo_dato = models.CharField(max_length=1)
+    voz = models.CharField(max_length=1)
+    velocidad= models.DecimalField(max_digits=3, decimal_places=0)
